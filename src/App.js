@@ -6,27 +6,29 @@ import "./App.css";
 export default function App() {
   const [displayValue, setDisplayValue] = useState("0");
   const [expression, setExpression] = useState("");
+  const [lastWasEqual, setLastWasEqual] = useState(false); // 👈 controla se última tecla foi "="
 
   const handleClick = (value) => {
     // Limpar tudo
     if (value === "AC") {
       setDisplayValue("0");
       setExpression("");
-      return;
-    }
-    
-    // Ignorar botões vazios
-    if (value === ""){
-      setDisplayValue(displayValue + value);
+      setLastWasEqual(false);
       return;
     }
 
-    // Calcular (exemplo simples)
+    // Ignorar botões vazios
+    if (value === "") {
+      return; // só ignora
+    }
+
+    // Calcular
     if (value === "=") {
       try {
-        const result = eval(expression || "0"); // atenção: eval tem riscos
+        const result = eval(expression || "0"); // cuidado: eval tem riscos
         setDisplayValue(String(result));
-        setExpression(String(result)); // permite continuar calculando com o resultado
+        setExpression(String(result));
+        setLastWasEqual(true); // 👈 marca que o último foi "="
       } catch {
         setDisplayValue("Erro");
         setExpression("");
@@ -34,22 +36,29 @@ export default function App() {
       return;
     }
 
-    // Caso normal (número, operador, ponto)
-    const newExpr = expression + value;
-    setExpression(newExpr);
-    setDisplayValue(newExpr);
+    // Se o último foi "=", iniciar nova expressão
+    if (lastWasEqual && /[0-9.]/.test(value)) {
+      // Se o próximo é número/ponto, começa do zero
+      setExpression(value);
+      setDisplayValue(value);
+    } else {
+      // Caso normal: adiciona na expressão
+      const newExpr = expression + value;
+      setExpression(newExpr);
+      setDisplayValue(newExpr);
+    }
+
+    setLastWasEqual(false); // volta ao normal
   };
 
   return (
     <div className="calculator">
       <Display value={displayValue} />
-      
 
       <div className="buttons">
-        {/* Grid de botões: use a mesma ordem que você deixou no layout */}
-        <Button label="AC" click={handleClick} className="button-ac"/>
-        <Button label="" click={handleClick}/>
-        <Button label="" click={handleClick}/>
+        <Button label="AC" click={handleClick} className="button-ac" />
+        <Button label="" click={handleClick} />
+        <Button label="" click={handleClick} />
         <Button label="/" click={handleClick} className="button-operator" />
 
         <Button label="7" click={handleClick} />
@@ -67,7 +76,7 @@ export default function App() {
         <Button label="3" click={handleClick} />
         <Button label="+" click={handleClick} className="button-operator" />
 
-        <Button label=":)" click={handleClick}/> 
+        <Button label=":)" click={handleClick} />
         <Button label="0" click={handleClick} wide />
         <Button label="." click={handleClick} />
         <Button label="=" click={handleClick} className="button-equal" />
