@@ -1,0 +1,20 @@
+button {
+  background-color: #f4f4f4; /* cor de fundo clara */
+  border: none; /* tira a borda padrão do botão */
+  border-radius: 8px; /* arredonda os cantos */
+  padding: 10px 15px; /* espaço interno: altura e largura */
+  margin: 5px; /* espaçamento entre os botões */
+  font-size: 18px; /* tamanho da fonte */
+  cursor: pointer; /* muda o cursor para “mãozinha” */
+  transition: all 0.2s ease; /* animação suave nas mudanças */
+}
+
+button:hover {
+  background-color: #e0e0e0; /* muda a cor ao passar o mouse */
+  box-shadow: 0px 4px 8px rgba(43, 10, 10, 0.2); /* adiciona sombra */
+}
+
+button:active {
+  background-color: #d6d6d6; /* cor quando clica */
+  transform: scale(0.90); /* dá um efeito de “apertar” */
+}

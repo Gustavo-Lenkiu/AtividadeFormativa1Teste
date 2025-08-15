@@ -1,0 +1,13 @@
+.display {
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff; /* fundo branco */
+  border-radius: 8px; /* cantos arredondados */
+  border: 1px solid #ccc; /* borda fina cinza */
+  padding: 10px;
+  font-size: 24px; /* texto maior para fácil leitura */
+  text-align: right; /* números alinhados à direita */
+  box-sizing: border-box; /* padding incluso no tamanho total */
+  margin-bottom: 15px; /* espaço abaixo do display */
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1); /* sombra interna suave */
+}
