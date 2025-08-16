@@ -6,10 +6,9 @@ import "./App.css";
 export default function App() {
   const [displayValue, setDisplayValue] = useState("0");
   const [expression, setExpression] = useState("");
-  const [lastWasEqual, setLastWasEqual] = useState(false); // 👈 controla se última tecla foi "="
+  const [lastWasEqual, setLastWasEqual] = useState(false); 
 
   const handleClick = (value) => {
-    // Limpar tudo
     if (value === "AC") {
       setDisplayValue("0");
       setExpression("");
@@ -17,18 +16,18 @@ export default function App() {
       return;
     }
 
-    // Ignorar botões vazios
+
     if (value === "") {
-      return; // só ignora
+      return; 
     }
 
-    // Calcular
+
     if (value === "=") {
       try {
-        const result = eval(expression || "0"); // cuidado: eval tem riscos
+        const result = eval(expression || "0"); 
         setDisplayValue(String(result));
         setExpression(String(result));
-        setLastWasEqual(true); // 👈 marca que o último foi "="
+        setLastWasEqual(true);
       } catch {
         setDisplayValue("Erro");
         setExpression("");
@@ -36,19 +35,19 @@ export default function App() {
       return;
     }
 
-    // Se o último foi "=", iniciar nova expressão
+   
     if (lastWasEqual && /[0-9.]/.test(value)) {
-      // Se o próximo é número/ponto, começa do zero
+ 
       setExpression(value);
       setDisplayValue(value);
     } else {
-      // Caso normal: adiciona na expressão
+
       const newExpr = expression + value;
       setExpression(newExpr);
       setDisplayValue(newExpr);
     }
 
-    setLastWasEqual(false); // volta ao normal
+    setLastWasEqual(false); 
   };
 
   return (
