@@ -12,7 +12,7 @@ jobs:
       - name: Simulando Continuous Delivery
         uses: actions/upload-artifact@v4
         with:
-          name: projetozipado.zip
+          name: projetozipado
           path: |
               "**.js"
               
@@ -47,7 +47,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: projetozipado.zip
+          name: projetozipado
 
       - name: Baixando o artefato
         run: ls -R
