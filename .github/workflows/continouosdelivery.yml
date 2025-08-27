@@ -2,12 +2,17 @@ name: CI
 
 on: ['push', 'pull_request']
 
+
 jobs:
   delivery:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Rodar build do React
+        run: CI=false npm run build
+
 
       - name: Instalar dependências
         run: npm install
