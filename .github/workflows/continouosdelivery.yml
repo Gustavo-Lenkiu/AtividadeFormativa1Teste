@@ -14,9 +14,10 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-
       - name: Rodar build do React
-        run: CI=false npm run build
+        run: npm run build
+        env:
+            CI: false
 
 
       - name: Rodar build do React
