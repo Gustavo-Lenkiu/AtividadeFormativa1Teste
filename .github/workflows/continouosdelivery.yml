@@ -88,5 +88,5 @@ jobs:
         run: |
           git fetch origin
           git checkout main
-          git merge $GITHUB_REF_NAME --no-edit
+          git merge $GITHUB_REF_NAME --no-edit --allow-unrelated-histories
           git push origin main
