@@ -17,11 +17,6 @@ jobs:
       - name: Rodar build do React
         run: DISABLE_ESLINT_PLUGIN=true npm run build
 
-
-
-      - name: Rodar build do React
-        run: npm run build
-
       - name: Compactar pasta build em .zip
         run: |
           mkdir dist
